@@ -3,4 +3,4 @@ A Python application, which connects to a library database. It displays the item
 
 The Application uses the Model-view-controller (MVC) design pattern.
 
-![Image of the Application](/pictures/MVCTkGui.png)
+![Image of the Application](/pictures/MVCTKVIEW.png)
