@@ -10,10 +10,8 @@ class Controller:
         self.view.listbox.bind('<<ListboxSelect>>', self.loadLbxDataToEntry)
 
     def loadDataToLBX(self):
-        self.view.listbox.delete(0, "end")
         data = self.model.getAllData()
-        for values in data:
-           self.view.listbox.insert("end", values)
+        self.view.setListbox(data)
 
     def addDataToLbx(self):
         self.addToDB()
@@ -30,8 +28,8 @@ class Controller:
     def loadLbxDataToEntry(self, event=None):
         title = self.view.getCursorTitle()
         author = self.view.getCursorAuthor()
-        self.view.entryTitleTextVar.set(title)
-        self.view.entryAuthorTextVar.set(author)
+        self.view.setTitle(title)
+        self.view.setAuthor(author)
         print("ID: ", self.view.getCursorID(), "\nTITLE: ", title, "\nAUTHOR: ", author)
 
     def addToDB(self):
