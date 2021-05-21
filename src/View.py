@@ -2,6 +2,7 @@ from tkinter import *
 class View:
     def __init__(self, root):
         self.root = root
+        self.root.title("Library Database")
         self.createWidgets()
 
     def createWidgets(self):
@@ -31,11 +32,17 @@ class View:
         self.listbox = Listbox(self.root, width=60)
         self.listbox.grid(row=3, column=1, padx=5, pady=5)
 
+    def getTitleData(self):
+        return self.entryTitleTextVar.get()
+
     def getAuthorData(self):
         return self.entryAuthorTextVar.get()
 
-    def getTitleData(self):
-        return self.entryTitleTextVar.get()
+    def setTitle(self, title):
+        self.entryTitleTextVar.set(title)
+
+    def setAuthor(self, author):
+        self.entryAuthorTextVar.set(author)
 
     def getCursorID(self, event=None):
         selectedLbData = self.listbox.curselection()
@@ -51,3 +58,8 @@ class View:
         selectedLbData = self.listbox.curselection()
         author = self.listbox.get(selectedLbData)[2]
         return author
+
+    def setListbox(self, data):
+        self.listbox.delete(0, END)
+        for values in data:
+            self.listbox.insert(END, values)
