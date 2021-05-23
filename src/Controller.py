@@ -8,6 +8,7 @@ class Controller:
         self.view.buttonUpdate["command"] = self.updateDataFromLBX
         self.view.buttonRemove["command"] = self.removeDataFromLBX
         self.view.listbox.bind('<<ListboxSelect>>', self.loadLbxDataToEntry)
+        self.loadDataToLBX()
 
     def loadDataToLBX(self):
         data = self.model.getAllData()
