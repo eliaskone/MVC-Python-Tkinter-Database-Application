@@ -9,5 +9,4 @@ if __name__ == '__main__':
     view = View.View(root)
     model = Model.Model()
     controller = Controller.Controller(model, view)
-    controller.loadDataToLBX()
     root.mainloop()
