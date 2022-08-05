@@ -1,8 +1,9 @@
 import sqlite3
+from src import Constants
 
 class Model:
     def __init__(self):
-        self.con = sqlite3.connect('books.db')
+        self.con = sqlite3.connect(Constants.DATABASE_NAME)
         self.cur = self.con.cursor()
 
     def addToTable(self, title, author):
@@ -10,7 +11,6 @@ class Model:
         self.cur.execute("INSERT INTO Books (title, author) values (?,?)", self.values)
         print(self.cur.fetchall())
         self.con.commit()
-
 
     def updateTable(self, id, title, author):
         self.values = (str(title), str(author), int(id))
@@ -31,3 +31,4 @@ class Model:
         print(result)
         self.con.commit()
         return result
+

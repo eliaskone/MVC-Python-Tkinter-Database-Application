@@ -1,5 +1,3 @@
-from tkinter import *
-
 class Controller:
     def __init__(self, model, view):
         self.model = model
@@ -7,7 +5,7 @@ class Controller:
         self.view.buttonAdd["command"] = self.addDataToLbx
         self.view.buttonUpdate["command"] = self.updateDataFromLBX
         self.view.buttonRemove["command"] = self.removeDataFromLBX
-        self.view.listbox.bind('<<ListboxSelect>>', self.loadLbxDataToEntry)
+        self.view.treeview.bind('<<TreeviewSelect>>', self.loadDataToEntry)
         self.loadDataToLBX()
 
     def loadDataToLBX(self):
@@ -26,12 +24,13 @@ class Controller:
         self.updateDB()
         self.loadDataToLBX()
 
-    def loadLbxDataToEntry(self, event=None):
-        title = self.view.getCursorTitle()
-        author = self.view.getCursorAuthor()
+    def loadDataToEntry(self, event=None):
+        title = self.view.getCursorTitle() or ''
+        author = self.view.getCursorAuthor() or ''
+        id_ = self.view.getCursorID() or ''
         self.view.setTitle(title)
         self.view.setAuthor(author)
-        print("ID: ", self.view.getCursorID(), "\nTITLE: ", title, "\nAUTHOR: ", author)
+        print("ID: ", id_, "\nTITLE: ", title, "\nAUTHOR: ", author)
 
     def addToDB(self):
         title = self.view.getTitleData()
@@ -46,4 +45,6 @@ class Controller:
 
     def removeDataFromDB(self):
         id = self.view.getCursorID()
-        self.model.deleteDataFromTable(id)
+        if id:
+            self.model.deleteDataFromTable(id)
+
